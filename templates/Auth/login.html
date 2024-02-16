@@ -1,0 +1,90 @@
+{% extends 'Auth/base.html' %}
+{% load static %}
+{% block body_block %}
+
+<!-- Login Form -->
+<div class="container-fluid mt-4 ">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <img src="https://cdn.dribbble.com/users/1350622/screenshots/4408287/8.gif" 
+            class="img-fluid">
+        </div>
+      <div class="col-md-5">
+       <div class="card p-3 border-3d">
+        <h4>Log in to Table Banking</h4>
+        {% if messages %}
+        <div class="messages">
+          {% for message in messages %}
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+             {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div> 
+            {% endfor %}
+        </div>
+        {% endif %}
+        <form id="signupForm" action="#" method="POST">
+          {% csrf_token %}
+          <!-- Step One -->
+          <!-- Step One -->
+          <div id="stepOne">
+            <div class="form-group">
+              <label for="phone_number">Phone Number</label>
+              <input type="phone_number" id="phone_number" name="phone_number" class="form-control" placeholder="Enter your phone_number"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" class="form-control"
+                placeholder="Enter your password" required>
+            </div>
+            <div class="mt-4 text-center">
+              <input type="hidden" name="next_url" value="{{ next_url }}">
+              <button type="submit" class="btn btn-primary btn-block">Login</button>
+              <p>Don't have an account?</p>
+              <button type="button" class="btn btn-light">SignUp</button>
+
+            </div>
+            <div class="mt-4 text-center">
+              <button type="button" class="btn btn-link text-primary" data-toggle="modal" data-target="#privacyModal">
+                Privacy Policy
+              </button>
+            </div>
+          </div>
+        </form>
+          <h5 class="pt-5">© Bharathbrands Pvt Limited <span class="text-primary" data-toggle="modal" data-target="#myModal">Terms Of use</span></h5>
+       </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg animated bounceIn" role="document">
+      <div class="modal-content custom-modal">
+        <div class="modal-header">
+          <h5 class="modal-title">Terms & Conditions of Use</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <h4 class="text-primary">TABLE BANKING TERMS AND CONDITIONS</h4>
+            <p>     These Terms are a legal agreement between you and WebSacco that governs your access to and use of WebSacco service. Please review this entire Terms of Service before you decide whether to accept it and continue with the registration process.
+            </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+
+
+
+ 

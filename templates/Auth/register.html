@@ -1,0 +1,82 @@
+{% extends 'Auth/base.html' %}
+{% load static %}
+{% block body_block %}
+
+<!-- Login Form -->
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <img src="https://cdn.dribbble.com/users/1350622/screenshots/4408287/8.gif" class="img-fluid">
+        </div>
+        <div class="col-md-5">
+            <div class="card p-3 border-3d">
+                <h4>SignIn in to Table Banking</h4>
+                <p>Use your credentials to login</p>
+                <form id="signup-form">
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" id="first_name" placeholder="Enter first_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" id="last_name" placeholder="Enter last_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_number">Phone Number</label>
+                        <input type="number" class="form-control" id="phone_number" placeholder="Enter phone_number">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="showPasswordToggle">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn btn-light" id="signup-button">Sign Up</button>
+                  </form>
+                <h5 class="pt-5">© Bharathbrands Pvt Limited <span class="text-primary" data-toggle="modal" data-target="#myModal">Terms Of use</span></h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg animated bounceIn" role="document">
+        <div class="modal-content custom-modal">
+            <div class="modal-header">
+                <h5 class="modal-title">Terms & Conditions of Use</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-primary">TABLE BANKING TERMS AND CONDITIONS OF USE</h4>
+                <p>These Terms are a legal agreement between you and WebSacco that governs your access to and use of WebSacco service. Please review this entire Terms of Service before you decide whether to accept it and continue with the registration process.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+      // Handle the "Sign Up" button click event
+      $("#signup-button").click(function() {
+          // Redirect to the login page
+          window.location.href = "/login"; // Replace "/login" with the actual URL of your login page
+      });
+  });
+  </script>
+  
+
+{% endblock %}

@@ -1,0 +1,383 @@
+{% extends 'CreateGroup/base.html' %}
+{% load static %}
+
+{% block head_block %}
+<style>
+    .step {
+        display: none;
+        border-radius: 25px;
+        padding: 20px;
+        /* background-color: #f5f5f5; */
+        /* border: 1px solid #ddd; */
+    }
+    
+    .step.active {
+        display: block;
+    }
+    
+    .tab-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .tab-list li {
+        display: block;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border-radius: 30px;
+        /* padding: 5px 15px; */
+        /* background-color: #ccc; */
+    }
+    
+    .tab-list li.active {
+        background-color: #b7ffb5;
+        color: #349d32;
+    }
+</style>
+{% endblock %}
+
+{% block body_block %}
+  <!-- Join Form -->
+  <div class="container-fluid mt-4 ">
+   
+
+        <div class="row">
+            <div class="col-md-4">
+                <ul class="tab-list">
+                    <li class="active p-3" data-step="1"> <span class="badge badge-success p-2">1</span>  Group Setup</li>
+                    <li data-step="2" class="p-3"> <span class="badge badge-success p-2">2</span> Add Members</li>
+                    <li data-step="3" class="p-3"> <span class="badge badge-success p-2">3</span> Contribution Setup</li>
+                    <li data-step="4" class="p-3"> <span class="badge badge-success p-2">4</span> Loan Types</li>
+                    <li data-step="5" class="p-3"> <span class="badge badge-success p-2">5</span> Bank Account Setup</li>
+                    <li data-step="6" class="p-3"> <span class="badge badge-success p-2">6</span> Confirmation</li>
+                </ul>
+            </div>
+            <div class="col-md-8">
+                <form id="multi-step-form">
+                    <div class="step active" id="step1">
+                        <h2>Group Setup Details</h2>
+                       <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">Group Name:</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">How many members in the Group.?:</label>
+                                <input type="number" class="form-control" id="name" name="name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">Type Of Group:</label>
+                                <select class="form-control">
+                                    <option>---Select---</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">Your Group Role:</label>
+                                <select class="form-control">
+                                    <option>---Select---</option>
+                                </select>                            
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">Country Of Operation:</label>
+                                <select class="form-control">
+                                    <option>---Select---</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">Group Currency:</label>
+                                <select class="form-control">
+                                    <option>---Select---</option>
+                                </select>                            
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="name">Are You a Registered Entity..?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="proceed" id="yesRadio" value="yes">
+                                    <label class="form-check-label" for="yesRadio">
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="proceed" id="noRadio" value="no">
+                                    <label class="form-check-label" for="noRadio">
+                                        No
+                                    </label>
+                                </div>                         
+                            </div>
+                        </div>
+
+                       </div>
+                        <button class="btn btn-success float-right next-step " type="button" data-step="2">Save Changes & Continue</button>
+                    </div>
+    
+                    <div class="step" id="step2">
+                        <h2>Group Member Details</h2>
+                       
+
+
+                        <div class="table-responsive">
+                            <br>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Full Name</th>
+                                        <th>Phone Number</th>
+                                        <th>Email Address</th>
+                                        <th>Group Role</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="subject-list4">
+                                    <tr>
+                                        <td>1</td>
+                                        <td><input type="text" class="form-control" value=""></td>
+                                        <td><input type="text" class="form-control" value=""></td>
+                                        <td><input type="text" class="form-control" value=""></td>
+                                        <td><input type="text" class="form-control" value=""></td>
+                                        <td><button type="button" class="btn btn-danger remove-subject-btn">x</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button type="button" id="add-subject-btn6" class="btn btn-light float-left" style="float: right;">+ Add New</button> <br><br>
+                        <button type="button" id="add-subject-btn6" class="btn btn-primary float-left" style="float: right;">Upload Files</button>
+
+            
+                        <script>
+                            document.addEventListener('click', function (event) {
+                                if (event.target.classList.contains('remove-subject-btn')) {
+                                    event.target.closest('tr').remove();
+                                }
+                            });
+                    
+                            document.getElementById('add-subject-btn6').addEventListener('click', function () {
+                                const subjectList = document.getElementById('subject-list4');
+                                const newRow = document.createElement('tr');
+                    
+                                newRow.innerHTML = `
+                                    <td>${subjectList.rows.length + 1}</td>
+                                    <td><input type="text" class="form-control" value=""></td>
+                                    <td><input type="text" class="form-control" value=""></td>
+                                    <td><input type="text" class="form-control" value=""></td>
+                                    <td><input type="text" class="form-control" value=""></td>
+                                    <td><button type="button" class="btn btn-danger remove-subject-btn">x</button></td>
+                                `;
+                    
+                                subjectList.appendChild(newRow);
+                            });
+                    
+                            function Save(subject, teacher, fromTime, toTime, roomNo, day) {
+                                // Your save function logic here
+                            }
+                        </script>
+<br><br><br>
+                        <button class="btn btn-success  prev-step " type="button" data-step="1">Previous</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-success float-right next-step float-right " type="button" data-step="3">Next</button>
+                    </div>
+                    <div class="step" id="step3">
+                        <h2>Sacco Contribution Setup</h2>
+                        <div class="table-responsive">
+                            <br>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Contribution Details</th>
+                                        <th>Fine Details</th>
+                                        <th>Amount (KES)</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="btn btn-success  prev-step" type="button" data-step="2">Previous</button>
+                        <button class="btn btn-success float-right next-step" type="button" data-step="4">Next</button>
+                   
+                    </div>
+                    <div class="step" id="step4">
+                        <h2>Sacco Loan Types</h2>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="name">Does Your Group give loans to members or debtors.?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="proceed" id="yesRadio" value="yes">
+                                    <label class="form-check-label" for="yesRadio">
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="proceed" id="noRadio" value="no">
+                                    <label class="form-check-label" for="noRadio">
+                                        No
+                                    </label>
+                                </div>                         
+                            </div>
+                        </div>
+
+                        <button class="btn btn-success  prev-step" type="button" data-step="3">Previous</button>
+                        <button class="btn btn-success float-right next-step" type="button" data-step="5">Next</button>
+                   
+                    </div>
+                    <div class="step" id="step5">
+                        <h5 class="text-danger">Screen Details not provided</h5>
+
+                        <button class="btn btn-success  prev-step" type="button" data-step="4">Previous</button>
+                        <button class="btn btn-success float-right next-step" type="button" data-step="6">Next</button>
+                   
+                    </div>
+                    
+                    <div class="step" id="step6">
+                        <h2>Summary & Confirmation</h2>
+                        <p>That's all we need for now.Kindly review your data below before you submit</p>
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                              <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                  <button class="btn btn-link btn-block text-success text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    1. Sacco Information
+                                  </button>
+                                </h2>
+                              </div>
+                          
+                              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group row">
+                                          <label for="staticEmail" class="col-sm-2 col-form-label">Sacco Name</label>
+                                          <div class="col-sm-10">
+                                            <label for="staticEmail" class="col-form-label">Wakia Saving Group</label>
+                                          </div>
+                                        </div>
+                                        <div class="form-group row">
+                                          <label for="inputPassword" class="col-sm-2 col-form-label">Country</label>
+                                          <div class="col-sm-10">
+                                            <label for="staticEmail" class="col-form-label">Kenya Saving Group</label>
+                                          </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputPassword" class="col-sm-2 col-form-label">Currency</label>
+                                            <div class="col-sm-10">
+                                              <label for="staticEmail" class="col-form-label">Kenya Shilling</label>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label for="inputPassword" class="col-sm-2 col-form-label">Sacco Size</label>
+                                            <div class="col-sm-10">
+                                              <label for="staticEmail" class="col-form-label">10 Members</label>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label for="inputPassword" class="col-sm-2 col-form-label">Sacco Type</label>
+                                            <div class="col-sm-10">
+                                              <label for="staticEmail" class="col-form-label">Chama</label>
+                                            </div>
+                                          </div>
+                                      </form>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-header" id="headingTwo">
+                                <h2 class="mb-0">
+                                  <button class="btn btn-link btn-block text-success text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    2. Sacco Members 
+                                  </button>
+                                </h2>
+                              </div>
+                              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <h5 class="text-danger">Screen Details not provided</h5>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-header" id="headingThree">
+                                <h2 class="mb-0">
+                                  <button class="btn btn-link text-success btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    3. Contribution Settings 
+                                  </button>
+                                </h2>
+                              </div>
+                              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                <div class="card-body">
+                                  <h5 class="text-danger">Screen Details not provided</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div><br><br>
+                        <button class="btn btn-success  prev-step" type="button" data-step="5">Previous</button>
+                        <button class="btn btn-success float-right" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+           
+       
+
+    </div>
+    {% block script_block %}
+
+    <script>
+        $(document).ready(function () {
+            var currentStep = 1;
+            var $form = $("#multi-step-form");
+    
+            $(".next-step").click(function () {
+                var nextStep = $(this).data("step");
+                if (nextStep > currentStep) {
+                    // Store data from the current step
+                    if (currentStep === 1) {
+                        $("#confirm-name").text($("#name").val());
+                    } else if (currentStep === 2) {
+                        $("#confirm-address").text($("#address").val());
+                    }
+    
+                    currentStep = nextStep;
+                    updateStepVisibility();
+                }
+            });
+    
+            $(".prev-step").click(function () {
+                var prevStep = $(this).data("step");
+                if (prevStep < currentStep) {
+                    currentStep = prevStep;
+                    updateStepVisibility();
+                }
+            });
+    
+            function updateStepVisibility() {
+                $(".step").removeClass("active");
+                $("#step" + currentStep).addClass("active");
+    
+                $(".tab-list li").removeClass("active");
+                $(".tab-list li[data-step='" + currentStep + "']").addClass("active");
+            }
+    
+            $form.submit(function (e) {
+                e.preventDefault();
+                // Submit the form data
+                alert("Form submitted successfully!");
+            });
+        });
+    </script>
+
+{% endblock %}
+{% endblock %}

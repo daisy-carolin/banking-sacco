@@ -1,0 +1,65 @@
+{% extends 'Basic/base.html' %}
+{% load static %}
+{% block body_block %}
+
+<!-- Home Form -->
+<div class="container-fluid mt-4 ">
+    <div class=" card border-3d p-3 mt-5 mb-3 card-bg-animation">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class=" p-3 mb-3 card-bg-animation  d-flex">
+              <div class="vertical-center ">
+                <h1 class="text-success mb-3">Welcome to Table Banking</h1>
+                <h2 class="text-dark mb-3" >
+                  A community-based savings and lending strategy that enables individuals, especially those in low-income or underserved communities, to come together and pool their financial resources for mutual benefit.
+                </p>
+              <a href="{% url 'join_group' %}">  
+                <button type="button" class="btn btn-success ">Get Started</button>
+            </a>
+              </div>
+              
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img src="https://www.penser.co.uk/wp-content/uploads/2020/06/Digital-Challenger-Banks-Penser-Feature-Image-scaled.jpg"
+              class="img-fluid rounded" alt="Table Banking Image">
+          </div>
+        
+        </div>
+      </div>
+    <div class="card border-3d p-3 card-bg-animation">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <img src="https://cdn.dribbble.com/users/1350622/screenshots/4408287/8.gif" 
+                class="img-fluid">
+            </div>
+            <div class="col-md-8">
+                <div class=" p-3 ">
+                 <h6>How Table Banking works</h6>
+                 <p>Empowering women through financial inclusion.</p>
+                 <p class="pt-3">What is Table Banking?</p>
+                 <p class="pt-3">Table Banking is a group-based funding system where members of a group
+                    meet weekly and make weekly savings to form a kitty from which members can borrow.
+                    Each member’s contributions are recorded in her passbook and referred to as her share.
+                    The minimum contribution per week, which can be as low as Ksh 25 (20p), is set in the
+                    group’s constitution, which is written by the group itself. Thus it is set with the members’</p>
+                <p class="pt-3">
+                    incomes in mind.Members can contribute any amount they choose at or above the minimum set.
+    Members can contribute any amount they choose at or above the minimum set.The constitution
+    also covers matters such as election of officers, arrangements for audit of the ledgers, term of loans
+    and interest rates, and group sharing of interest paid.the ledgers, term of loans and interest rates,
+    and group sharing of interest paid. the ledgers, term of loans and interest rates, and group sharing
+    of interest paid.the ledgers, term of loans and interest rates, and group sharing of interest paid.
+    The constitution also covers matters such as election of officers, arrangements for audit of the
+    ledgers, term of loans and interest rates, and group sharing of interest paid.
+                </p>
+               
+                </div>
+              
+               </div>
+           
+         
+        </div>
+    </div>
+  </div>
+  {% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'Basic/base.html' %}
+{% load static %}
+{% block body_block %}
+  <!-- Join Form -->
+  <div class="container-fluid mt-4 ">
+    <div class="row justify-content-center">
+
+        <div class="col-md-10">
+            <div class=" p-3 border-3d">
+                <h4 class="font-weight-bold text-center">Automate your SAVINGS</h4>
+                <p class="text-center">Empowering women through financial inclusion.</p>
+                <p class="mt-3 text-center">Choose an option to continue:</p>
+                <center>
+                    <div class="button-group p-4">
+                        <a href="{% url 'proceed' %}"><button type="button" class="btn btn-success" >Create
+                            a Group</button></a>
+                            <a href="{% url 'proceed' %}">  <button type="button" class="btn btn-success">Join a
+                            Group</button></a>
+                    </div>
+                <p>Select a Group You Belongs to</p>
+                <div class="card col-md-4 bg-light mb-3">
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3 pr-0">
+                        <div class="d-flex flex-nowrap dash-widget">
+                            <div class="dash-widget-icon mt-3 text-success" style="border-radius: 50%;background-color: rgb(245, 233, 233);padding: 5px;">
+                                <i class="fas fa-users fa-3x"></i> <!-- Adjust fa-3x for larger icon -->
+                            </div>
+                            <div class="dash-widget-info pl-3">
+                                <h4 class="mb-0 text-success">Group</h4>
+                                
+                                <span class="badge badge-success">Group Active</span>
+                                <p class="mb-1 text-success">Secretary</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-md-4 bg-light">
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3 pr-0">
+                        <div class="d-flex flex-nowrap dash-widget">
+                            <div class="dash-widget-icon mt-3 text-success" style="border-radius: 50%;background-color: rgb(245, 233, 233);padding: 5px;">
+                                <i class="fas fa-users fa-3x"></i> <!-- Adjust fa-3x for larger icon -->
+                            </div>
+                            <div class="dash-widget-info pl-3">
+                                <h4 class="mb-0 text-success">Group</h4>
+                                
+                                <span class="badge badge-success">Group Active</span>
+                                <p class="mb-1 text-success">Secretary</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="button-group p-4">
+                    <button type="button" class="btn btn-danger" href="#">
+                        <i class="fas fa-sign-out-alt"></i>   Logout
+                    </button>
+                   
+                </div>
+                </center>
+                    
+                </div>
+            </div>
+           
+        </div>
+
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'Basic/base.html' %}
+{% load static %}
+{% block body_block %}
+ <!-- Procees Form -->
+ <style>
+    .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+   .button {
+            background-color: #33911a;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .button:hover {
+            background-color: #2a7e14;
+        }
+ </style>
+ <div class="container-fluid mt-4 ">
+    <div class="row justify-content-center">
+      
+      <div class="col-md-4">
+       <div class="card p-3 border-3d">
+        <h4 class="font-weight-bold text-center">Loan Management</h4>
+        <p class="text-center">Empowering women through financial inclusion.</p>
+        <p class="mt-3 text-center">Choose an option to continue:</p>
+        <div class="container">
+        
+          <div class="button-group">
+              <a class="button" href="{% url 'member_contribution' %}">Deposit Money</a>
+              <a class="button" href="{% url 'borrow_loan' %}">Borrow Loan</a>
+              <a class="button" href="{% url 'fund_loan' %}">Fund Loan</a>
+              <a class="button" href="{% url 'repay_loan' %}">Repay Loan</a>
+          </div>
+      </div>
+       </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
